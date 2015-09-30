@@ -8,6 +8,7 @@ CLI Markdown Renderer
 ## Usage
 
 ```php
+<?php
 require_once 'vendor/autoload.php';
 
 use League\CommonMark\DocParser;
