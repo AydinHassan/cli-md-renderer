@@ -5,7 +5,7 @@ CLI Markdown Renderer
 [![Coverage Status](https://img.shields.io/codecov/c/github/AydinHassan/cli-md-renderer.svg?style=flat-square)](https://codecov.io/github/AydinHassan/cli-md-renderer)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/AydinHassan/cli-md-renderer.svg?style=flat-square)](https://scrutinizer-ci.com/g/AydinHassan/cli-md-renderer/)
 
-## Usage
+### Usage
 
 ```php
 <?php
