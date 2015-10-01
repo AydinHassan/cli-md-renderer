@@ -5,6 +5,7 @@ namespace AydinHassan\CliMdRenderer\Renderer;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
+use PhpSchool\PSX\SyntaxHighlighter;
 
 /**
  * Class FencedCodeRender
@@ -13,6 +14,18 @@ use AydinHassan\CliMdRenderer\CliRenderer;
  */
 class FencedCodeRenderer implements CliBlockRendererInterface
 {
+    /**
+     * @var SyntaxHighlighter
+     */
+    private $syntaxHighlighter;
+
+    /**
+     * @param SyntaxHighlighter $syntaxHighlighter
+     */
+    public function __construct(SyntaxHighlighter $syntaxHighlighter)
+    {
+        $this->syntaxHighlighter = $syntaxHighlighter;
+    }
 
     /**
      * @param AbstractBlock $block
@@ -26,14 +39,14 @@ class FencedCodeRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        $text = $renderer->style($block->getStringContent(), ['yellow']);
+        $code = $this->syntaxHighlighter->highlight($block->getStringContent());
         return implode(
             "\n",
             array_map(
                 function ($row) {
                     return sprintf("    %s", $row);
                 },
-                explode("\n", $text)
+                explode("\n", $code)
             )
         );
     }

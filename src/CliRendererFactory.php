@@ -23,6 +23,10 @@ use League\CommonMark\Inline\Element\Code;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
+use PhpSchool\PSX\ColorsAdapter;
+use PhpSchool\PSX\Factory;
+use PhpSchool\PSX\SyntaxHighlighter;
+use PhpSchool\PSX\SyntaxHighlighterConfig;
 
 /**
  * Class CliRendererFactory
@@ -36,12 +40,15 @@ class CliRendererFactory
      */
     public function __invoke()
     {
+        $highlighterFactory = new Factory;
+        $codeRender = new FencedCodeRenderer($highlighterFactory->__invoke());
+
         $blockRenderers = [
             Document::class         => new DocumentRenderer,
             Header::class           => new HeaderRenderer,
             HorizontalRule::class   => new HorizontalRuleRenderer,
             Paragraph::class        => new ParagraphRenderer,
-            FencedCode::class       => new FencedCodeRenderer,
+            FencedCode::class       => $codeRender,
         ];
 
         $inlineBlockRenderers = [
