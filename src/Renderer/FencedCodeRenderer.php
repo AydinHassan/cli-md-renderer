@@ -39,14 +39,36 @@ class FencedCodeRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        $code = $this->syntaxHighlighter->highlight($block->getStringContent());
+        $infoWords = $block->getInfoWords();
+        $codeType = null;
+        if (count($infoWords) !== 0 && strlen($infoWords[0]) !== 0) {
+            $codeType = $infoWords[0];
+        }
+
+        if ('php' !== $codeType) {
+            return $this->indent($renderer->style($block->getStringContent(), 'yellow'));
+        }
+
+        return sprintf(
+            "    %s\n%s",
+            $renderer->style('<?php', 'cyan'),
+            $this->indent($this->syntaxHighlighter->highlight($block->getStringContent())) . "\n"
+        );
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    private function indent($string)
+    {
         return implode(
             "\n",
             array_map(
                 function ($row) {
                     return sprintf("    %s", $row);
                 },
-                explode("\n", $code)
+                explode("\n", $string)
             )
         );
     }

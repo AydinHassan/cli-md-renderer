@@ -31,7 +31,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         return FencedCodeRenderer::class;
     }
 
-    public function testRender()
+    public function testRenderPhpCode()
     {
         $highlighterFactory = new Factory;
         $class          = $this->getRendererClass();
@@ -45,12 +45,46 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
             ->method('getStringContent')
             ->will($this->returnValue('<?php echo "Hello World";'));
 
+        $code
+            ->expects($this->once())
+            ->method('getInfoWords')
+            ->will($this->returnValue(['php']));
+
         $color          = new Color;
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
         $this->assertEquals(
-            "    [33mecho[0m [32m'Hello World'[0m;",
+            "    [36m<?php[0m\n    [33mecho[0m [32m'Hello World'[0m;\n",
+            $renderer->render($code, $cliRenderer)
+        );
+    }
+
+    public function testRenderNonePhpCodeIsRendererYellow()
+    {
+        $highlighterFactory = new Factory;
+        $class          = $this->getRendererClass();
+        $renderer       = new $class($highlighterFactory->__invoke());
+
+        $code = $this->getMockBuilder(FencedCode::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $code
+            ->expects($this->once())
+            ->method('getStringContent')
+            ->will($this->returnValue('console.log("lol js???")'));
+
+        $code
+            ->expects($this->once())
+            ->method('getInfoWords')
+            ->will($this->returnValue(['js']));
+
+        $color          = new Color;
+        $color->setForceStyle(true);
+        $cliRenderer    = new CliRenderer([], [], $color);
+
+        $this->assertEquals(
+            '    [33mconsole.log("lol js???")[0m',
             $renderer->render($code, $cliRenderer)
         );
     }
