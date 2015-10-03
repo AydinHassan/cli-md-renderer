@@ -26,10 +26,7 @@ use League\CommonMark\Inline\Element\Code;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
-use PhpSchool\PSX\ColorsAdapter;
 use PhpSchool\PSX\Factory;
-use PhpSchool\PSX\SyntaxHighlighter;
-use PhpSchool\PSX\SyntaxHighlighterConfig;
 
 /**
  * Class CliRendererFactory
