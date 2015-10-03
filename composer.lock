@@ -130,12 +130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "39a039fa4257d3b9209de36cc54f5d3f5d6253f5"
+                "reference": "98d28d7aa04e2d92fea2b375373878d0b1fce992"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/39a039fa4257d3b9209de36cc54f5d3f5d6253f5",
-                "reference": "39a039fa4257d3b9209de36cc54f5d3f5d6253f5",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/98d28d7aa04e2d92fea2b375373878d0b1fce992",
+                "reference": "98d28d7aa04e2d92fea2b375373878d0b1fce992",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-09-21 07:12:59"
+            "time": "2015-10-03 10:17:41"
         },
         {
             "name": "php-school/psx",
@@ -181,12 +181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/psx.git",
-                "reference": "d22db477f0c25ceb172a94914b1e90b3db9cb409"
+                "reference": "0de5481cefc641815c4a3867abffbdeb353a6226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/psx/zipball/d22db477f0c25ceb172a94914b1e90b3db9cb409",
-                "reference": "d22db477f0c25ceb172a94914b1e90b3db9cb409",
+                "url": "https://api.github.com/repos/php-school/psx/zipball/0de5481cefc641815c4a3867abffbdeb353a6226",
+                "reference": "0de5481cefc641815c4a3867abffbdeb353a6226",
                 "shasum": ""
             },
             "require": {
@@ -215,7 +215,7 @@
                 }
             ],
             "description": "PHP CLI Syntax Highlighter",
-            "time": "2015-10-01 23:07:05"
+            "time": "2015-10-03 15:10:43"
         }
     ],
     "packages-dev": [
@@ -696,16 +696,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.7",
+            "version": "2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
+                "reference": "ac8e7a3db35738d56ee9a76e78a4e03d97628983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/ac8e7a3db35738d56ee9a76e78a4e03d97628983",
+                "reference": "ac8e7a3db35738d56ee9a76e78a4e03d97628983",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +748,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-08-19 09:14:08"
+            "time": "2015-10-02 06:51:40"
         },
         {
             "name": "sebastian/comparator",

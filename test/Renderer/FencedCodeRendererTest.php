@@ -4,16 +4,15 @@
 namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
+use AydinHassan\CliMdRenderer\Highlighter\PhpHighlighter;
+use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
 use InvalidArgumentException;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
-use PhpSchool\PSX\ColorsAdapter;
 use PhpSchool\PSX\Factory;
-use PhpSchool\PSX\SyntaxHighlighter;
-use PhpSchool\PSX\SyntaxHighlighterConfig;
 
 /**
  * Class FencedCodeRendererTest
@@ -31,12 +30,41 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         return FencedCodeRenderer::class;
     }
 
+    public function testAddSyntaxHighlighterViaConstructor()
+    {
+        new FencedCodeRenderer(['php' => $this->getMock(SyntaxHighlighterInterface::class)]);
+    }
+
+    public function testConstructorThrowsExceptionIfLanguageNotString()
+    {
+        $this->setExpectedException(
+            InvalidArgumentException::class,
+            'Language must be a string. Got: "integer"'
+        );
+
+        new FencedCodeRenderer([0 => $this->getMock(SyntaxHighlighterInterface::class)]);
+    }
+
+    public function testAddSyntaxHighlighter()
+    {
+        $renderer = new FencedCodeRenderer;
+        $renderer->addSyntaxHighlighter('php', $this->getMock(SyntaxHighlighterInterface::class));
+    }
+
+    public function testAddSyntaxHighlighterThrowsExceptionIfLanguageNotString()
+    {
+        $this->setExpectedException(
+            InvalidArgumentException::class,
+            'Language must be a string. Got: "stdClass"'
+        );
+
+        $renderer = new FencedCodeRenderer;
+        $renderer->addSyntaxHighlighter(new \stdClass, $this->getMock(SyntaxHighlighterInterface::class));
+    }
+
     public function testRenderPhpCode()
     {
-        $highlighterFactory = new Factory;
-        $class          = $this->getRendererClass();
-        $renderer       = new $class($highlighterFactory->__invoke());
-
+        $renderer = $this->getRenderer();
         $code = $this->getMockBuilder(FencedCode::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -55,16 +83,14 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $cliRenderer    = new CliRenderer([], [], $color);
 
         $this->assertEquals(
-            "    [36m<?php[0m\n    [33mecho[0m [32m'Hello World'[0m;\n",
+            "    [36m<?php[0m\n    \n    [33mecho[0m [32m'Hello World'[0m;\n    ",
             $renderer->render($code, $cliRenderer)
         );
     }
 
     public function testRenderNonePhpCodeIsRendererYellow()
     {
-        $highlighterFactory = new Factory;
-        $class          = $this->getRendererClass();
-        $renderer       = new $class($highlighterFactory->__invoke());
+        $renderer = $this->getRenderer();
 
         $code = $this->getMockBuilder(FencedCode::class)
             ->disableOriginalConstructor()
@@ -102,7 +128,22 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
             InvalidArgumentException::class,
             sprintf('Incompatible block type: "%s"', get_class($block))
         );
+        $this->getRenderer()->render($block, $cliRenderer);
+    }
+
+    /**
+     * @return FencedCodeRenderer
+     */
+    private function getRenderer()
+    {
         $highlighterFactory = new Factory;
-        (new $class($highlighterFactory->__invoke()))->render($block, $cliRenderer);
+        $class = $this->getRendererClass();
+        $renderer = new $class;
+        $renderer->addSyntaxHighlighter(
+            'php',
+            new PhpHighlighter($highlighterFactory->__invoke())
+        );
+
+        return $renderer;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AydinHassan\CliMdRenderer;
 
+use AydinHassan\CliMdRenderer\Highlighter\PhpHighlighter;
 use AydinHassan\CliMdRenderer\Renderer\DocumentRenderer;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HeaderRenderer;
@@ -41,7 +42,8 @@ class CliRendererFactory
     public function __invoke()
     {
         $highlighterFactory = new Factory;
-        $codeRender = new FencedCodeRenderer($highlighterFactory->__invoke());
+        $codeRender = new FencedCodeRenderer();
+        $codeRender->addSyntaxHighlighter('php', new PhpHighlighter($highlighterFactory->__invoke()));
 
         $blockRenderers = [
             Document::class         => new DocumentRenderer,
