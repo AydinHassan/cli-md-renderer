@@ -2,6 +2,7 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
+use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -15,16 +16,36 @@ use PhpSchool\PSX\SyntaxHighlighter;
 class FencedCodeRenderer implements CliBlockRendererInterface
 {
     /**
-     * @var SyntaxHighlighter
+     * @var SyntaxHighlighterInterface[]
      */
-    private $syntaxHighlighter;
+    private $highlighters;
 
     /**
-     * @param SyntaxHighlighter $syntaxHighlighter
+     * @param SyntaxHighlighterInterface[] $syntaxHighlighters
      */
-    public function __construct(SyntaxHighlighter $syntaxHighlighter)
+    public function __construct(array $syntaxHighlighters = [])
     {
-        $this->syntaxHighlighter = $syntaxHighlighter;
+        foreach ($syntaxHighlighters as $language => $syntaxHighlighter) {
+            $this->addSyntaxHighlighter($language, $syntaxHighlighter);
+        }
+    }
+
+    /**
+     * @param string $language
+     * @param SyntaxHighlighterInterface $highlighter
+     */
+    public function addSyntaxHighlighter($language, SyntaxHighlighterInterface $highlighter)
+    {
+        if (!is_string($language)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Language must be a string. Got: "%s"',
+                    is_object($language) ? get_class($language) : gettype($language)
+                )
+            );
+        }
+
+        $this->highlighters[$language] = $highlighter;
     }
 
     /**
@@ -45,14 +66,12 @@ class FencedCodeRenderer implements CliBlockRendererInterface
             $codeType = $infoWords[0];
         }
 
-        if ('php' !== $codeType) {
+        if (null === $codeType || !isset($this->highlighters[$codeType])) {
             return $this->indent($renderer->style($block->getStringContent(), 'yellow'));
         }
 
-        return sprintf(
-            "    %s\n%s",
-            $renderer->style('<?php', 'cyan'),
-            $this->indent($this->syntaxHighlighter->highlight($block->getStringContent())) . "\n"
+        return $this->indent(
+            sprintf("%s\n", $this->highlighters[$codeType]->highlight($block->getStringContent()))
         );
     }
 
