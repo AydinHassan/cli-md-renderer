@@ -26,11 +26,6 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
 
     public function testRender()
     {
-        $cols = exec('tput cols');
-        if (empty($cols)) {
-            $this->markTestSkipped();
-        }
-
         $class          = $this->getRendererClass();
         $renderer       = new $class;
         $rule           = new HorizontalRule();
@@ -39,9 +34,8 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
-        $dashes = str_repeat('-', $cols);
         $this->assertEquals(
-            "[90m$dashes[0m",
+            "[90m------------------------------[0m",
             $renderer->render($rule, $cliRenderer)
         );
     }

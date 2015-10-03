@@ -15,6 +15,28 @@ class HorizontalRuleRenderer implements CliBlockRendererInterface
 {
 
     /**
+     * @var int
+     */
+    private $width;
+
+    /**
+     * @param int $width
+     */
+    public function __construct($width = 30)
+    {
+        if (!is_int($width)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Width should be an integer. Got: "%s"',
+                    is_object($width) ? get_class($width) : gettype($width)
+                )
+            );
+        }
+
+        $this->width = $width;
+    }
+
+    /**
      * @param AbstractBlock $block
      * @param CliRenderer   $renderer
      *
@@ -26,6 +48,6 @@ class HorizontalRuleRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        return $renderer->style(str_repeat('-', exec('tput cols')), 'dark_gray');
+        return $renderer->style(str_repeat('-', $this->width), 'dark_gray');
     }
 }
