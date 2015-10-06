@@ -24,10 +24,10 @@ echo $cliRenderer->renderBlock($ast);
 
 ### Syntax Highlighting
 
-`FencedCode` can be syntax highlighted. By default only PHP source code is Syntax Highlighted using: [https://github.com/php-school/psx](php-school/psx)
-If you want to add more syntax highlight for other languages you should create a `SyntaxHighlighter` which implements `\AydinHassan\CliMdRenderer\SyntaxHighlighterInterface`
+`FencedCode` can be syntax highlighted. By default only PHP source code is Syntax Highlighted using: [php-school/psx](https://github.com/php-school/psx)
+If you want to add syntax highlighting for other languages you should create a class which implements `\AydinHassan\CliMdRenderer\SyntaxHighlighterInterface`
 
-It accepts code as a string and should return highlighted code as a string. You register your `SyntaxHighlighter` like so
+It accepts code as a string and should return highlighted code as a string. You register your highlighter like so
 
 ```php
 <?php
@@ -105,5 +105,5 @@ return new CliRenderer($blockRenderers, $inlineBlockRenderers, $colors);
 - [ ] Make configurable (Line Endings, colors, styles)
 - [x] Image Renderer
 - [ ] List Renderer
-- [ ] Code Syntax Highlighting
-- [ ] Documentation 
+- [x] Code Syntax Highlighting
+- [x] Documentation 
