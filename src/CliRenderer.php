@@ -130,7 +130,7 @@ class CliRenderer
     /**
      * @param string $inlineBlockClass
      *
-     * @return null|CliBlockRendererInterface
+     * @return null|CliInlineRendererInterface
      */
     private function getInlineRendererForClass($inlineBlockClass)
     {
