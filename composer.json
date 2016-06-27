@@ -10,7 +10,7 @@
     ],
     "require" : {
         "php" : ">=5.5",
-        "league/commonmark": "^0.11.3",
+        "league/commonmark": "^0.13",
         "php-school/psx": "^1.1.1",
         "nikic/php-parser": "^2.0"
     },

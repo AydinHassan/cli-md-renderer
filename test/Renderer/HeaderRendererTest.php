@@ -7,7 +7,7 @@ use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HeaderRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\Header;
+use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Inline\Element\Text;
 
 /**
@@ -30,7 +30,7 @@ class HeaderRendererTest extends AbstractRendererTest implements RendererTestInt
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class;
-        $header         = new Header(2, 'HEADING!!');
+        $header         = new Heading(2, 'HEADING!!');
         $header->appendChild(new Text('HEADING!!'));
 
 

@@ -71,7 +71,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $code
             ->expects($this->once())
             ->method('getStringContent')
-            ->will($this->returnValue('<?php echo "Hello World";'));
+            ->will($this->returnValue('<?php echo \'Hello World\';'));
 
         $code
             ->expects($this->once())

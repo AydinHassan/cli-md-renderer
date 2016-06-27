@@ -11,8 +11,7 @@ use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use Colors\Color;
 use League\CommonMark\Block\Element\Document;
-use League\CommonMark\Block\Element\Header;
-use League\CommonMark\Block\Element\HorizontalRule;
+use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Block\Element\Paragraph;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
@@ -20,6 +19,7 @@ use AydinHassan\CliMdRenderer\InlineRenderer\CodeRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\EmphasisRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\StrongRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\NewlineRenderer;
+use League\CommonMark\Block\Element\ThematicBreak;
 use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Inline\Element\Code;
@@ -46,8 +46,8 @@ class CliRendererFactory
 
         $blockRenderers = [
             Document::class         => new DocumentRenderer,
-            Header::class           => new HeaderRenderer,
-            HorizontalRule::class   => new HorizontalRuleRenderer,
+            Heading::class          => new HeaderRenderer,
+            ThematicBreak::class    => new HorizontalRuleRenderer,
             Paragraph::class        => new ParagraphRenderer,
             FencedCode::class       => $codeRender,
         ];

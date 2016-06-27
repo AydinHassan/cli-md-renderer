@@ -3,7 +3,7 @@
 namespace AydinHassan\CliMdRenderer\Renderer;
 
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\HorizontalRule;
+use League\CommonMark\Block\Element\ThematicBreak;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 /**
@@ -44,7 +44,7 @@ class HorizontalRuleRenderer implements CliBlockRendererInterface
      */
     public function render(AbstractBlock $block, CliRenderer $renderer)
     {
-        if (!($block instanceof HorizontalRule)) {
+        if (!($block instanceof ThematicBreak)) {
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 

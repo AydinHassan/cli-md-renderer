@@ -3,7 +3,7 @@
 namespace AydinHassan\CliMdRenderer\Renderer;
 
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Header;
+use League\CommonMark\Block\Element\Heading;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 /**
@@ -22,7 +22,7 @@ class HeaderRenderer implements CliBlockRendererInterface
      */
     public function render(AbstractBlock $block, CliRenderer $renderer)
     {
-        if (!($block instanceof Header)) {
+        if (!($block instanceof Heading)) {
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 

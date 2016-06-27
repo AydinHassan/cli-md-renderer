@@ -7,7 +7,7 @@ use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
 use InvalidArgumentException;
-use League\CommonMark\Block\Element\HorizontalRule;
+use League\CommonMark\Block\Element\ThematicBreak;
 
 /**
  * Class HorizontalRuleRendererTest
@@ -40,7 +40,7 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class;
-        $rule           = new HorizontalRule();
+        $rule           = new ThematicBreak();
 
         $color          = new Color;
         $color->setForceStyle(true);
