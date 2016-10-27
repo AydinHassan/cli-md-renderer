@@ -34,6 +34,5 @@ class PhpHighlighterTest extends PHPUnit_Framework_TestCase
             $expected,
             $phpHighlighter->highlight($expected)
         );
-
     }
 }
