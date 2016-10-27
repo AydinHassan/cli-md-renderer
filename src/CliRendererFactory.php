@@ -8,10 +8,16 @@ use AydinHassan\CliMdRenderer\Renderer\DocumentRenderer;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HeaderRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
+use AydinHassan\CliMdRenderer\Renderer\ListBlockRenderer;
+use AydinHassan\CliMdRenderer\Renderer\ListItemRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use Colors\Color;
 use League\CommonMark\Block\Element\Document;
+use League\CommonMark\Block\Element\Header;
 use League\CommonMark\Block\Element\Heading;
+use League\CommonMark\Block\Element\HorizontalRule;
+use League\CommonMark\Block\Element\ListBlock;
+use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Block\Element\Paragraph;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
@@ -50,6 +56,8 @@ class CliRendererFactory
             ThematicBreak::class    => new HorizontalRuleRenderer,
             Paragraph::class        => new ParagraphRenderer,
             FencedCode::class       => $codeRender,
+            ListBlock::class        => new ListBlockRenderer,
+            ListItem::class         => new ListItemRenderer,
         ];
 
         $inlineBlockRenderers = [
