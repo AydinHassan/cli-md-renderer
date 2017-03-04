@@ -3,6 +3,9 @@
 namespace AydinHassan\CliMdRenderer\Highlighter;
 
 use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
+use Kadet\Highlighter\Formatter\CliFormatter;
+use Kadet\Highlighter\KeyLighter;
+use Kadet\Highlighter\Language\Php;
 use PhpSchool\PSX\SyntaxHighlighter;
 
 /**
@@ -12,17 +15,18 @@ use PhpSchool\PSX\SyntaxHighlighter;
  */
 class PhpHighlighter implements SyntaxHighlighterInterface
 {
-    /**
-     * @var SyntaxHighlighter
-     */
-    private $phpHighlighter;
 
     /**
-     * @param SyntaxHighlighter $phpHighlighter
+     * @var KeyLighter
      */
-    public function __construct(SyntaxHighlighter $phpHighlighter)
+    private $keyLighter;
+
+    /**
+     * @param KeyLighter $keyLighter
+     */
+    public function __construct(KeyLighter $keyLighter)
     {
-        $this->phpHighlighter = $phpHighlighter;
+        $this->keyLighter = $keyLighter;
     }
 
     /**
@@ -31,6 +35,6 @@ class PhpHighlighter implements SyntaxHighlighterInterface
      */
     public function highlight($code)
     {
-        return $this->phpHighlighter->highlight($code);
+        return $this->keyLighter->highlight($code, new Php, new CliFormatter);
     }
 }
