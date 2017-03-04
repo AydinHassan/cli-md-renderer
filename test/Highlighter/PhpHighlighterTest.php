@@ -22,7 +22,13 @@ class PhpHighlighterTest extends PHPUnit_Framework_TestCase
         $expected = '<?php echo "Hello World"';
 
         $highlighter = $this->prophesize(KeyLighter::class);
-        $highlighter->highlight($expected, Argument::type(Php::class), Argument::type(CliFormatter::class))->willReturn($expected);
+        $highlighter
+            ->highlight(
+                $expected,
+                Argument::type(Php::class),
+                Argument::type(CliFormatter::class)
+            )
+            ->willReturn($expected);
 
         $phpHighlighter = new PhpHighlighter($highlighter->reveal());
 
