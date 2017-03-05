@@ -104,6 +104,6 @@ return new CliRenderer($blockRenderers, $inlineBlockRenderers, $colors);
 ### To Do
 - [ ] Make configurable (Line Endings, colors, styles)
 - [x] Image Renderer
-- [ ] List Renderer
+- [x] List Renderer
 - [x] Code Syntax Highlighting
 - [x] Documentation 
