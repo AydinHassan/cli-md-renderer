@@ -6,11 +6,8 @@ use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
 use Kadet\Highlighter\Formatter\CliFormatter;
 use Kadet\Highlighter\KeyLighter;
 use Kadet\Highlighter\Language\Php;
-use PhpSchool\PSX\SyntaxHighlighter;
 
 /**
- * Class PhpHighlighter
- * @package AydinHassan\CliMdRenderer\Highlighter
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
 class PhpHighlighter implements SyntaxHighlighterInterface
