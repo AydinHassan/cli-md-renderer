@@ -3,8 +3,12 @@
 namespace AydinHassan\CliMdRendererTest\Highlighter;
 
 use AydinHassan\CliMdRenderer\Highlighter\PhpHighlighter;
+use Kadet\Highlighter\Formatter\CliFormatter;
+use Kadet\Highlighter\KeyLighter;
+use Kadet\Highlighter\Language\Php;
 use PhpSchool\PSX\SyntaxHighlighter;
 use PHPUnit_Framework_TestCase;
+use Prophecy\Argument;
 
 /**
  * Class PhpHighlighterTest
@@ -15,22 +19,20 @@ class PhpHighlighterTest extends PHPUnit_Framework_TestCase
 {
     public function testPhpHighlighter()
     {
-        $syntaxHighlighter = $this
-            ->getMockBuilder(SyntaxHighlighter::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $phpHighlighter = new PhpHighlighter($syntaxHighlighter);
-
         $expected = '<?php echo "Hello World"';
 
-        $syntaxHighlighter
-            ->expects($this->once())
-            ->method('highlight')
-            ->with($expected)
-            ->will($this->returnValue($expected));
+        $highlighter = $this->prophesize(KeyLighter::class);
+        $highlighter
+            ->highlight(
+                $expected,
+                Argument::type(Php::class),
+                Argument::type(CliFormatter::class)
+            )
+            ->willReturn($expected);
 
-        $this->assertEquals(
+        $phpHighlighter = new PhpHighlighter($highlighter->reveal());
+
+        self::assertEquals(
             $expected,
             $phpHighlighter->highlight($expected)
         );

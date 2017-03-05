@@ -9,6 +9,7 @@ use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
 use InvalidArgumentException;
+use Kadet\Highlighter\KeyLighter;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
@@ -83,7 +84,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $cliRenderer    = new CliRenderer([], [], $color);
 
         $this->assertEquals(
-            "    [36m<?php[0m\n    \n    [33mecho[0m [32m'Hello World'[0m;\n    ",
+            "    \e[93;1m<?php\e[0m \e[33mecho\e[0m \e[32m'Hello World'\e[0m\e[33m;\e[0m\e[0m\e[0m\n    ",
             $renderer->render($code, $cliRenderer)
         );
     }
@@ -118,7 +119,6 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
     public function testExceptionIsThrownIfNotCorrectBlock()
     {
         $block = $this->getMock(AbstractBlock::class);
-        $class = $this->getRendererClass();
 
         $cliRenderer = $this->getMockBuilder(CliRenderer::class)
             ->disableOriginalConstructor()
@@ -136,12 +136,11 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
      */
     private function getRenderer()
     {
-        $highlighterFactory = new Factory;
         $class = $this->getRendererClass();
         $renderer = new $class;
         $renderer->addSyntaxHighlighter(
             'php',
-            new PhpHighlighter($highlighterFactory->__invoke())
+            new PhpHighlighter(new KeyLighter)
         );
 
         return $renderer;

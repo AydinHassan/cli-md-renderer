@@ -12,6 +12,7 @@ use AydinHassan\CliMdRenderer\Renderer\ListBlockRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ListItemRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use Colors\Color;
+use Kadet\Highlighter\KeyLighter;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\Block\Element\Header;
 use League\CommonMark\Block\Element\Heading;
@@ -46,9 +47,9 @@ class CliRendererFactory
      */
     public function __invoke()
     {
-        $highlighterFactory = new Factory;
+
         $codeRender = new FencedCodeRenderer();
-        $codeRender->addSyntaxHighlighter('php', new PhpHighlighter($highlighterFactory->__invoke()));
+        $codeRender->addSyntaxHighlighter('php', new PhpHighlighter(new KeyLighter));
 
         $blockRenderers = [
             Document::class         => new DocumentRenderer,
