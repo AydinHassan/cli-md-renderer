@@ -13,11 +13,8 @@ use Kadet\Highlighter\KeyLighter;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
-use PhpSchool\PSX\Factory;
 
 /**
- * Class FencedCodeRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
 class FencedCodeRendererTest extends AbstractRendererTest implements RendererTestInterface

@@ -24,7 +24,7 @@ echo $cliRenderer->renderBlock($ast);
 
 ### Syntax Highlighting
 
-`FencedCode` can be syntax highlighted. By default only PHP source code is Syntax Highlighted using: [php-school/psx](https://github.com/php-school/psx)
+`FencedCode` can be syntax highlighted. By default only PHP source code is Syntax Highlighted using: [kadet/keylighter](https://github.com/kadet1090/KeyLighter)
 If you want to add syntax highlighting for other languages you should create a class which implements `\AydinHassan\CliMdRenderer\SyntaxHighlighterInterface`
 
 It accepts code as a string and should return highlighted code as a string. You register your highlighter like so
@@ -53,6 +53,7 @@ use AydinHassan\CliMdRenderer\Renderer\HeaderRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use Colors\Color;
+use Kadet\Highlighter\KeyLighter;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\Block\Element\Header;
 use League\CommonMark\Block\Element\HorizontalRule;
@@ -69,11 +70,10 @@ use League\CommonMark\Inline\Element\Code;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
-use PhpSchool\PSX\Factory;
 
 $highlighterFactory = new Factory;
 $codeRender = new FencedCodeRenderer();
-$codeRender->addSyntaxHighlighter('php', new PhpHighlighter($highlighterFactory->__invoke()));
+$codeRender->addSyntaxHighlighter('php', new PhpHighlighter(new KeyLighter));
 $codeRender->addSyntaxHighlighter('js', new JsSyntaxHighlighter);
 
 $blockRenderers = [

@@ -33,7 +33,6 @@ use League\CommonMark\Inline\Element\Code;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
-use PhpSchool\PSX\Factory;
 
 /**
  * Class CliRendererFactory

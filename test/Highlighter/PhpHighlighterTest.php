@@ -6,7 +6,6 @@ use AydinHassan\CliMdRenderer\Highlighter\PhpHighlighter;
 use Kadet\Highlighter\Formatter\CliFormatter;
 use Kadet\Highlighter\KeyLighter;
 use Kadet\Highlighter\Language\Php;
-use PhpSchool\PSX\SyntaxHighlighter;
 use PHPUnit_Framework_TestCase;
 use Prophecy\Argument;
 
