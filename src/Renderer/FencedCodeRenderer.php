@@ -6,11 +6,8 @@ use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
-use PhpSchool\PSX\SyntaxHighlighter;
 
 /**
- * Class FencedCodeRender
- * @package AydinHassan\CliMdRenderer\Renderer
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
 class FencedCodeRenderer implements CliBlockRendererInterface
