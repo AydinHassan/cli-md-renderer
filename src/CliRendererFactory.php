@@ -48,7 +48,9 @@ class CliRendererFactory
     {
 
         $codeRender = new FencedCodeRenderer();
-        $codeRender->addSyntaxHighlighter('php', new PhpHighlighter(new KeyLighter));
+        $keyLighter = new KeyLighter;
+        $keyLighter->init();
+        $codeRender->addSyntaxHighlighter('php', new PhpHighlighter($keyLighter));
 
         $blockRenderers = [
             Document::class         => new DocumentRenderer,

@@ -21,17 +21,16 @@ abstract class AbstractInlineRendererTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Not a Renderer');
         }
 
-        $block = $this->getMock(AbstractInline::class);
+        $block = $this->createMock(AbstractInline::class);
         $class = $this->getRendererClass();
 
         $cliRenderer = $this->getMockBuilder(CliRenderer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            sprintf('Incompatible inline type: "%s"', get_class($block))
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('Incompatible inline type: "%s"', get_class($block)));
+
         (new $class)->render($block, $cliRenderer);
     }
 }

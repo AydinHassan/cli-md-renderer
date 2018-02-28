@@ -71,9 +71,10 @@ use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
 
-$highlighterFactory = new Factory;
 $codeRender = new FencedCodeRenderer();
-$codeRender->addSyntaxHighlighter('php', new PhpHighlighter(new KeyLighter));
+$keyLighter = new KeyLighter;
+$keyLighter->init();
+$codeRender->addSyntaxHighlighter('php', new PhpHighlighter($keyLighter));
 $codeRender->addSyntaxHighlighter('js', new JsSyntaxHighlighter);
 
 $blockRenderers = [

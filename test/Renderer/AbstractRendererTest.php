@@ -21,17 +21,15 @@ abstract class AbstractRendererTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Not a Renderer');
         }
 
-        $block = $this->getMock(AbstractBlock::class);
+        $block = $this->createMock(AbstractBlock::class);
         $class = $this->getRendererClass();
 
         $cliRenderer = $this->getMockBuilder(CliRenderer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            sprintf('Incompatible block type: "%s"', get_class($block))
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('Incompatible block type: "%s"', get_class($block)));
         (new $class)->render($block, $cliRenderer);
     }
 }

@@ -27,13 +27,11 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
 
     public function testExceptionIsThrownIfWidthNotInterger()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            'Width should be an integer. Got: "stdClass"'
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Width should be an integer. Got: "stdClass"');
 
-        $class          = $this->getRendererClass();
-        $renderer       = new $class(new \stdClass);
+        $class = $this->getRendererClass();
+        new $class(new \stdClass);
     }
 
     public function testRender()

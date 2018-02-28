@@ -30,34 +30,30 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
 
     public function testAddSyntaxHighlighterViaConstructor()
     {
-        new FencedCodeRenderer(['php' => $this->getMock(SyntaxHighlighterInterface::class)]);
+        new FencedCodeRenderer(['php' => $this->createMock(SyntaxHighlighterInterface::class)]);
     }
 
     public function testConstructorThrowsExceptionIfLanguageNotString()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            'Language must be a string. Got: "integer"'
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Language must be a string. Got: "integer"');
 
-        new FencedCodeRenderer([0 => $this->getMock(SyntaxHighlighterInterface::class)]);
+        new FencedCodeRenderer([0 => $this->createMock(SyntaxHighlighterInterface::class)]);
     }
 
     public function testAddSyntaxHighlighter()
     {
         $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter('php', $this->getMock(SyntaxHighlighterInterface::class));
+        $renderer->addSyntaxHighlighter('php', $this->createMock(SyntaxHighlighterInterface::class));
     }
 
     public function testAddSyntaxHighlighterThrowsExceptionIfLanguageNotString()
     {
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            'Language must be a string. Got: "stdClass"'
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Language must be a string. Got: "stdClass"');
 
         $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter(new \stdClass, $this->getMock(SyntaxHighlighterInterface::class));
+        $renderer->addSyntaxHighlighter(new \stdClass, $this->createMock(SyntaxHighlighterInterface::class));
     }
 
     public function testRenderPhpCode()
@@ -115,16 +111,15 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
 
     public function testExceptionIsThrownIfNotCorrectBlock()
     {
-        $block = $this->getMock(AbstractBlock::class);
+        $block = $this->createMock(AbstractBlock::class);
 
         $cliRenderer = $this->getMockBuilder(CliRenderer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->setExpectedException(
-            InvalidArgumentException::class,
-            sprintf('Incompatible block type: "%s"', get_class($block))
-        );
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('Incompatible block type: "%s"', get_class($block)));
+
         $this->getRenderer()->render($block, $cliRenderer);
     }
 

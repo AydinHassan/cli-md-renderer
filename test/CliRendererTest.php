@@ -20,10 +20,10 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
 {
     public function testRenderBlockThrowsExceptionIfNoRenderer()
     {
-        $block = $this->getMock(AbstractBlock::class);
+        $block = $this->createMock(AbstractBlock::class);
 
-        $this->setExpectedException(
-            RuntimeException::class,
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage(
             sprintf('Unable to find corresponding renderer for block type: "%s"', get_class($block))
         );
 
@@ -33,9 +33,9 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
 
     public function testRenderBlock()
     {
-        $block = $this->getMock(AbstractBlock::class);
+        $block = $this->createMock(AbstractBlock::class);
         $class = get_class($block);
-        $blockRenderer = $this->getMock(CliBlockRendererInterface::class);
+        $blockRenderer = $this->createMock(CliBlockRendererInterface::class);
         $renderer = new CliRenderer([
             $class => $blockRenderer
         ], [], new Color);
@@ -50,9 +50,9 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
 
     public function testRenderBlocks()
     {
-        $block1         = $this->getMock(AbstractBlock::class);
-        $block2         = $this->getMock(AbstractBlock::class);
-        $blockRenderer  = $this->getMock(CliBlockRendererInterface::class);
+        $block1         = $this->createMock(AbstractBlock::class);
+        $block2         = $this->createMock(AbstractBlock::class);
+        $blockRenderer  = $this->createMock(CliBlockRendererInterface::class);
 
         $renderer = new CliRenderer([
             get_class($block1) => $blockRenderer,
@@ -76,10 +76,10 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineBlocksThrowsExceptionIfNoRenderer()
     {
-        $block = $this->getMock(AbstractInline::class);
+        $block = $this->createMock(AbstractInline::class);
 
-        $this->setExpectedException(
-            RuntimeException::class,
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage(
             sprintf('Unable to find corresponding renderer for inline type: "%s"', get_class($block))
         );
 
@@ -89,9 +89,9 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineBlocks()
     {
-        $block1 = $this->getMock(AbstractInline::class);
-        $block2 = $this->getMock(AbstractInline::class);
-        $inlineRenderer  = $this->getMock(CliInlineRendererInterface::class);
+        $block1 = $this->createMock(AbstractInline::class);
+        $block2 = $this->createMock(AbstractInline::class);
+        $inlineRenderer  = $this->createMock(CliInlineRendererInterface::class);
 
         $renderer = new CliRenderer([], [
             get_class($block1) => $inlineRenderer,
