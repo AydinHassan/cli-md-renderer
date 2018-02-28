@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e06c35504a12ee64458fb8c31d3c65ff",
+    "content-hash": "5eb02cc70a37955ad324caa8f76ad2ae",
     "packages": [
         {
             "name": "kadet/keylighter",
@@ -1587,7 +1587,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5"
+        "php": ">=5.6"
     },
     "platform-dev": []
 }
