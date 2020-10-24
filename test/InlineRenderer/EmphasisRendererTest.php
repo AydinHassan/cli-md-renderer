@@ -11,11 +11,6 @@ use Colors\Color;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class EmphasisRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class EmphasisRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
 

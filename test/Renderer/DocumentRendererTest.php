@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -11,14 +10,8 @@ use Colors\Color;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\Block\Element\Paragraph;
 
-/**
- * Class DocumentRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class DocumentRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */

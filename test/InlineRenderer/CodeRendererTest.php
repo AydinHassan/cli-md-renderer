@@ -9,11 +9,6 @@ use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
 use League\CommonMark\Inline\Element\Code;
 
-/**
- * Class CodeRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class CodeRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
 

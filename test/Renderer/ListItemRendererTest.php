@@ -15,12 +15,8 @@ use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Block\Element\Paragraph;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class ListItemRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */

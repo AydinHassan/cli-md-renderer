@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -19,7 +18,6 @@ use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
  */
 class FencedCodeRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */
@@ -30,30 +28,17 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
 
     public function testAddSyntaxHighlighterViaConstructor()
     {
-        new FencedCodeRenderer(['php' => $this->createMock(SyntaxHighlighterInterface::class)]);
-    }
+        $renderer = new FencedCodeRenderer(['php' => $highlighter = $this->createMock(SyntaxHighlighterInterface::class)]);
 
-    public function testConstructorThrowsExceptionIfLanguageNotString()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language must be a string. Got: "integer"');
-
-        new FencedCodeRenderer([0 => $this->createMock(SyntaxHighlighterInterface::class)]);
+        $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
     }
 
     public function testAddSyntaxHighlighter()
     {
         $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter('php', $this->createMock(SyntaxHighlighterInterface::class));
-    }
+        $renderer->addSyntaxHighlighter('php', $highlighter = $this->createMock(SyntaxHighlighterInterface::class));
 
-    public function testAddSyntaxHighlighterThrowsExceptionIfLanguageNotString()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language must be a string. Got: "stdClass"');
-
-        $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter(new \stdClass, $this->createMock(SyntaxHighlighterInterface::class));
+        $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
     }
 
     public function testRenderPhpCode()

@@ -4,16 +4,11 @@ namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use AydinHassan\CliMdRenderer\CliRenderer;
 use InvalidArgumentException;
 
-/**
- * Class AbstractInlineRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-abstract class AbstractInlineRendererTest extends PHPUnit_Framework_TestCase
+abstract class AbstractInlineRendererTest extends TestCase
 {
     public function testExceptionIsThrownIfNotCorrectBlock()
     {

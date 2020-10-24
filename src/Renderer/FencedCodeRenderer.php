@@ -31,18 +31,17 @@ class FencedCodeRenderer implements CliBlockRendererInterface
      * @param string $language
      * @param SyntaxHighlighterInterface $highlighter
      */
-    public function addSyntaxHighlighter($language, SyntaxHighlighterInterface $highlighter)
+    public function addSyntaxHighlighter(string $language, SyntaxHighlighterInterface $highlighter)
     {
-        if (!is_string($language)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Language must be a string. Got: "%s"',
-                    is_object($language) ? get_class($language) : gettype($language)
-                )
-            );
-        }
-
         $this->highlighters[$language] = $highlighter;
+    }
+
+    /**
+     * @return SyntaxHighlighterInterface[]
+     */
+    public function getSyntaxHighlighters(): array
+    {
+        return $this->highlighters;
     }
 
     /**

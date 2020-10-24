@@ -10,14 +10,8 @@ use Colors\Color;
 use League\CommonMark\Block\Element\Paragraph;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class ParagraphRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class ParagraphRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */
@@ -33,7 +27,6 @@ class ParagraphRendererTest extends AbstractRendererTest implements RendererTest
         $paragraph      = new Paragraph;
         $paragraph->appendChild(new Text('Some Text 1'));
         $paragraph->appendChild(new Text('Some Text 2'));
-
 
         $color          = new Color;
         $color->setForceStyle(true);

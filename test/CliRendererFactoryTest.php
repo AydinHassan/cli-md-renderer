@@ -4,14 +4,9 @@ namespace AydinHassan\CliMdRendererTest;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\CliRendererFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Class CliRendererFactoryTest
- * @package AydinHassan\CliMdRendererTest
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-class CliRendererFactoryTest extends PHPUnit_Framework_TestCase
+class CliRendererFactoryTest extends TestCase
 {
     public function testFactoryReturnsInstance()
     {

@@ -9,14 +9,8 @@ use Colors\Color;
 use InvalidArgumentException;
 use League\CommonMark\Block\Element\ThematicBreak;
 
-/**
- * Class HorizontalRuleRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HorizontalRuleRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */
@@ -25,7 +19,7 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
         return HorizontalRuleRenderer::class;
     }
 
-    public function testExceptionIsThrownIfWidthNotInterger()
+    public function testExceptionIsThrownIfWidthNotInteger()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Width should be an integer. Got: "stdClass"');

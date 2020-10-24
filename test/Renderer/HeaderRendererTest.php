@@ -10,14 +10,8 @@ use Colors\Color;
 use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class HeaderRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HeaderRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */

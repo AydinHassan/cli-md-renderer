@@ -8,15 +8,10 @@ use AydinHassan\CliMdRenderer\Renderer\CliBlockRendererInterface;
 use Colors\Color;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Inline\Element\AbstractInline;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- * Class CliRendererTest
- * @package AydinHassan\CliMdRendererTest
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-class CliRendererTest extends PHPUnit_Framework_TestCase
+class CliRendererTest extends TestCase
 {
     public function testRenderBlockThrowsExceptionIfNoRenderer()
     {
@@ -60,16 +55,13 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
         ], [], new Color);
 
         $blockRenderer
-            ->expects($this->at(0))
+            ->expects($this->exactly(2))
             ->method('render')
-            ->with($block1, $renderer)
-            ->will($this->returnValue('block1'));
-
-        $blockRenderer
-            ->expects($this->at(1))
-            ->method('render')
-            ->with($block2, $renderer)
-            ->will($this->returnValue('block2'));
+            ->withConsecutive([$block1, $renderer], [$block2, $renderer])
+            ->willReturnOnConsecutiveCalls(
+                'block1',
+                'block2'
+            );
 
         $renderer->renderBlocks([$block1, $block2]);
     }
@@ -99,16 +91,13 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
         ], new Color);
 
         $inlineRenderer
-            ->expects($this->at(0))
+            ->expects($this->exactly(2))
             ->method('render')
-            ->with($block1, $renderer)
-            ->will($this->returnValue('inline1'));
-
-        $inlineRenderer
-            ->expects($this->at(1))
-            ->method('render')
-            ->with($block2, $renderer)
-            ->will($this->returnValue('inline2'));
+            ->withConsecutive([$block1, $renderer], [$block2, $renderer])
+            ->willReturnOnConsecutiveCalls(
+                'inline1',
+                'inline2'
+            );
 
         $this->assertEquals('inline1inline2', $renderer->renderInlines([$block1, $block2]));
     }

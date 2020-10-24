@@ -5,14 +5,9 @@ namespace AydinHassan\CliMdRendererTest;
 use AydinHassan\CliMdRenderer\CliRendererFactory;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Class E2ETest
- * @package AydinHassan\CliMdRendererTest
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-class E2ETest extends PHPUnit_Framework_TestCase
+class E2ETest extends TestCase
 {
     /**
      * @param string $markdown

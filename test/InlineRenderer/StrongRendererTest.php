@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -11,14 +10,8 @@ use Colors\Color;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class StrongRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class StrongRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */

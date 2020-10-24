@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -11,14 +10,8 @@ use Colors\Color;
 use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class LinkRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class LinkRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
-
     /**
      * @return string
      */
