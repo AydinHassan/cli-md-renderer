@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -25,14 +24,14 @@ class EmphasisRendererTest extends AbstractInlineRendererTest implements Rendere
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $emphasis       = new Emphasis();
         $emphasis->appendChild(new Text('Some Text'));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(

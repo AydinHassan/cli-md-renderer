@@ -23,15 +23,15 @@ class ParagraphRendererTest extends AbstractRendererTest implements RendererTest
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
-        $paragraph      = new Paragraph;
+        $renderer       = new $class();
+        $paragraph      = new Paragraph();
         $paragraph->appendChild(new Text('Some Text 1'));
         $paragraph->appendChild(new Text('Some Text 2'));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(

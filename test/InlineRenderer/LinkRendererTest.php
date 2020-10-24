@@ -23,14 +23,14 @@ class LinkRendererTest extends AbstractInlineRendererTest implements RendererTes
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $link           = new Link('http://www.google.com');
         $link->appendChild(new Text('http://www.google.com'));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertSame(

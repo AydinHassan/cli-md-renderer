@@ -32,6 +32,6 @@ class PhpHighlighter implements SyntaxHighlighterInterface
      */
     public function highlight($code)
     {
-        return $this->keyLighter->highlight($code, new Php, new CliFormatter);
+        return $this->keyLighter->highlight($code, new Php(), new CliFormatter());
     }
 }

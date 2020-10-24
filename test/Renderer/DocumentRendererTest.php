@@ -23,14 +23,14 @@ class DocumentRendererTest extends AbstractRendererTest implements RendererTestI
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
-        $doc            = new Document;
-        $doc->appendChild(new Paragraph);
+        $renderer       = new $class();
+        $doc            = new Document();
+        $doc->appendChild(new Paragraph());
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([
-            Paragraph::class => new ParagraphRenderer
+            Paragraph::class => new ParagraphRenderer()
         ], [], $color);
 
         $this->assertEquals(

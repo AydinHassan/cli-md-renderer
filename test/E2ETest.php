@@ -16,7 +16,7 @@ class E2ETest extends TestCase
      */
     public function testFullRender($markdown, $expected)
     {
-        $factory    = new CliRendererFactory;
+        $factory    = new CliRendererFactory();
         $renderer   = $factory->__invoke();
         $parser     = new DocParser(Environment::createCommonMarkEnvironment());
 

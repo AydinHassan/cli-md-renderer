@@ -21,10 +21,10 @@ class NewlineRendererTest extends AbstractInlineRendererTest implements Renderer
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
-        $emphasis       = new Newline;
+        $renderer       = new $class();
+        $emphasis       = new Newline();
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 

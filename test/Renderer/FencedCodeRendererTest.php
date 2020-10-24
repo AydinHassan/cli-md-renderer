@@ -28,14 +28,16 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
 
     public function testAddSyntaxHighlighterViaConstructor()
     {
-        $renderer = new FencedCodeRenderer(['php' => $highlighter = $this->createMock(SyntaxHighlighterInterface::class)]);
+        $renderer = new FencedCodeRenderer(
+            ['php' => $highlighter = $this->createMock(SyntaxHighlighterInterface::class)]
+        );
 
         $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
     }
 
     public function testAddSyntaxHighlighter()
     {
-        $renderer = new FencedCodeRenderer;
+        $renderer = new FencedCodeRenderer();
         $renderer->addSyntaxHighlighter('php', $highlighter = $this->createMock(SyntaxHighlighterInterface::class));
 
         $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
@@ -57,7 +59,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
             ->method('getInfoWords')
             ->will($this->returnValue(['php']));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
@@ -84,7 +86,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
             ->method('getInfoWords')
             ->will($this->returnValue(['js']));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
@@ -114,10 +116,10 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
     private function getRenderer()
     {
         $class = $this->getRendererClass();
-        $renderer = new $class;
+        $renderer = new $class();
         $renderer->addSyntaxHighlighter(
             'php',
-            new PhpHighlighter(new KeyLighter)
+            new PhpHighlighter(new KeyLighter())
         );
 
         return $renderer;

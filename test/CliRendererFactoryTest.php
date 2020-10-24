@@ -10,7 +10,7 @@ class CliRendererFactoryTest extends TestCase
 {
     public function testFactoryReturnsInstance()
     {
-        $factory = new CliRendererFactory;
+        $factory = new CliRendererFactory();
         $this->assertInstanceOf(CliRenderer::class, $factory->__invoke());
     }
 }

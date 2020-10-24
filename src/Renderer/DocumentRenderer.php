@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRenderer\Renderer;
 
 use League\CommonMark\Block\Element\AbstractBlock;

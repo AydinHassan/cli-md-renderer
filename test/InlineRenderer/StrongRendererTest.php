@@ -23,14 +23,14 @@ class StrongRendererTest extends AbstractInlineRendererTest implements RendererT
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $emphasis       = new Strong();
         $emphasis->appendChild(new Text('Some Text'));
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(

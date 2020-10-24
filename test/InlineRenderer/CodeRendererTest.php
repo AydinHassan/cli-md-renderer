@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -23,9 +22,9 @@ class CodeRendererTest extends AbstractInlineRendererTest implements RendererTes
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $code           = new Code('SOME CODE');
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 

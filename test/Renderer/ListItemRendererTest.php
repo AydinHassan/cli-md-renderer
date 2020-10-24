@@ -28,21 +28,21 @@ class ListItemRendererTest extends AbstractRendererTest implements RendererTestI
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
-        $list           = new ListItem(new ListData);
+        $renderer       = new $class();
+        $list           = new ListItem(new ListData());
 
-        $paragraph = new Paragraph;
+        $paragraph = new Paragraph();
         $paragraph->appendChild(new Text('Item 1'));
         $list->appendChild($paragraph);
 
-        $color = new Color;
+        $color = new Color();
         $color->setForceStyle(true);
         $cliRenderer = new CliRenderer(
             [
-                Paragraph::class => new ParagraphRenderer,
+                Paragraph::class => new ParagraphRenderer(),
             ],
             [
-                Text::class => new TextRenderer,
+                Text::class => new TextRenderer(),
             ],
             $color
         );

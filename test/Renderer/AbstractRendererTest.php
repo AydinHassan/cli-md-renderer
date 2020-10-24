@@ -25,6 +25,6 @@ abstract class AbstractRendererTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('Incompatible block type: "%s"', get_class($block)));
-        (new $class)->render($block, $cliRenderer);
+        (new $class())->render($block, $cliRenderer);
     }
 }

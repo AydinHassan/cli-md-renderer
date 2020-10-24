@@ -25,16 +25,16 @@ class HorizontalRuleRendererTest extends AbstractRendererTest implements Rendere
         $this->expectExceptionMessage('Width should be an integer. Got: "stdClass"');
 
         $class = $this->getRendererClass();
-        new $class(new \stdClass);
+        new $class(new \stdClass());
     }
 
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $rule           = new ThematicBreak();
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 

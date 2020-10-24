@@ -21,10 +21,10 @@ class TextRendererTest extends AbstractInlineRendererTest implements RendererTes
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $text           = new Text('HEY');
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 

@@ -23,15 +23,15 @@ class HeaderRendererTest extends AbstractRendererTest implements RendererTestInt
     public function testRender()
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $header         = new Heading(2, 'HEADING!!');
         $header->appendChild(new Text('HEADING!!'));
 
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(
