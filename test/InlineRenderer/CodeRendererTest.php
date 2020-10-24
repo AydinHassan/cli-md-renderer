@@ -11,15 +11,12 @@ use League\CommonMark\Inline\Element\Code;
 class CodeRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
 
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return CodeRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

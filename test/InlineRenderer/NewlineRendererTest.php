@@ -10,15 +10,12 @@ use League\CommonMark\Inline\Element\Newline;
 
 class NewlineRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return NewlineRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

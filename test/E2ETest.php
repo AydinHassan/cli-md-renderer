@@ -10,11 +10,9 @@ use PHPUnit\Framework\TestCase;
 class E2ETest extends TestCase
 {
     /**
-     * @param string $markdown
-     * @param string $expected
      * @dataProvider e2eProvider
      */
-    public function testFullRender($markdown, $expected)
+    public function testFullRender(string $markdown, string $expected): void
     {
         $factory    = new CliRendererFactory();
         $renderer   = $factory->__invoke();

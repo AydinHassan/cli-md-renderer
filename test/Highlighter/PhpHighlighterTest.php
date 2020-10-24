@@ -7,11 +7,10 @@ use Kadet\Highlighter\Formatter\CliFormatter;
 use Kadet\Highlighter\KeyLighter;
 use Kadet\Highlighter\Language\Php;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 class PhpHighlighterTest extends TestCase
 {
-    public function testPhpHighlighter()
+    public function testPhpHighlighter(): void
     {
         $expected = '<?php echo "Hello World"';
 

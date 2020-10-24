@@ -10,7 +10,7 @@ use InvalidArgumentException;
 
 abstract class AbstractRendererTest extends TestCase
 {
-    public function testExceptionIsThrownIfNotCorrectBlock()
+    public function testExceptionIsThrownIfNotCorrectBlock(): void
     {
         if (!$this instanceof RendererTestInterface) {
             $this->markTestSkipped('Not a Renderer');

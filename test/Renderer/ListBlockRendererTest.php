@@ -17,12 +17,12 @@ use League\CommonMark\Inline\Element\Text;
 
 class ListBlockRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return ListBlockRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();
@@ -37,7 +37,7 @@ class ListBlockRendererTest extends AbstractRendererTest implements RendererTest
         $this->assertEquals('', $renderer->render($list, $cliRenderer));
     }
 
-    public function testRenderWithChildren()
+    public function testRenderWithChildren(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

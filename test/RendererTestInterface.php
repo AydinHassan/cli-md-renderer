@@ -4,8 +4,5 @@ namespace AydinHassan\CliMdRendererTest;
 
 interface RendererTestInterface
 {
-    /**
-     * @return string
-     */
-    public function getRendererClass();
+    public function getRendererClass(): string;
 }

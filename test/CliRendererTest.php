@@ -13,7 +13,7 @@ use RuntimeException;
 
 class CliRendererTest extends TestCase
 {
-    public function testRenderBlockThrowsExceptionIfNoRenderer()
+    public function testRenderBlockThrowsExceptionIfNoRenderer(): void
     {
         $block = $this->createMock(AbstractBlock::class);
 
@@ -26,7 +26,7 @@ class CliRendererTest extends TestCase
         $renderer->renderBlock($block);
     }
 
-    public function testRenderBlock()
+    public function testRenderBlock(): void
     {
         $block = $this->createMock(AbstractBlock::class);
         $class = get_class($block);
@@ -43,7 +43,7 @@ class CliRendererTest extends TestCase
         $renderer->renderBlock($block);
     }
 
-    public function testRenderBlocks()
+    public function testRenderBlocks(): void
     {
         $block1         = $this->createMock(AbstractBlock::class);
         $block2         = $this->createMock(AbstractBlock::class);
@@ -66,7 +66,7 @@ class CliRendererTest extends TestCase
         $renderer->renderBlocks([$block1, $block2]);
     }
 
-    public function testRenderInlineBlocksThrowsExceptionIfNoRenderer()
+    public function testRenderInlineBlocksThrowsExceptionIfNoRenderer(): void
     {
         $block = $this->createMock(AbstractInline::class);
 
@@ -79,7 +79,7 @@ class CliRendererTest extends TestCase
         $renderer->renderInlines([$block]);
     }
 
-    public function testRenderInlineBlocks()
+    public function testRenderInlineBlocks(): void
     {
         $block1 = $this->createMock(AbstractInline::class);
         $block2 = $this->createMock(AbstractInline::class);

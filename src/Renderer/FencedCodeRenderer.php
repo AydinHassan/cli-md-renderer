@@ -7,18 +7,15 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class FencedCodeRenderer implements CliBlockRendererInterface
 {
     /**
-     * @var SyntaxHighlighterInterface[]
+     * @var array<SyntaxHighlighterInterface>
      */
     private $highlighters;
 
     /**
-     * @param SyntaxHighlighterInterface[] $syntaxHighlighters
+     * @param array<SyntaxHighlighterInterface> $syntaxHighlighters
      */
     public function __construct(array $syntaxHighlighters = [])
     {
@@ -27,30 +24,20 @@ class FencedCodeRenderer implements CliBlockRendererInterface
         }
     }
 
-    /**
-     * @param string $language
-     * @param SyntaxHighlighterInterface $highlighter
-     */
     public function addSyntaxHighlighter(string $language, SyntaxHighlighterInterface $highlighter): void
     {
         $this->highlighters[$language] = $highlighter;
     }
 
     /**
-     * @return SyntaxHighlighterInterface[]
+     * @return array<SyntaxHighlighterInterface>
      */
     public function getSyntaxHighlighters(): array
     {
         return $this->highlighters;
     }
 
-    /**
-     * @param AbstractBlock $block
-     * @param CliRenderer   $renderer
-     *
-     * @return string
-     */
-    public function render(AbstractBlock $block, CliRenderer $renderer)
+    public function render(AbstractBlock $block, CliRenderer $renderer): string
     {
         if (!($block instanceof FencedCode)) {
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
@@ -71,11 +58,7 @@ class FencedCodeRenderer implements CliBlockRendererInterface
         );
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    private function indent($string)
+    private function indent(string $string): string
     {
         return implode(
             "\n",

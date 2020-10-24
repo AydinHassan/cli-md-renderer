@@ -4,12 +4,10 @@ namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
-use AydinHassan\CliMdRenderer\Renderer\ListBlockRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ListItemRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\ListBlock;
 use League\CommonMark\Block\Element\ListData;
 use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Block\Element\Paragraph;
@@ -17,15 +15,12 @@ use League\CommonMark\Inline\Element\Text;
 
 class ListItemRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return ListItemRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

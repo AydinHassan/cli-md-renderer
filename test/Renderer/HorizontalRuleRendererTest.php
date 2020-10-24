@@ -6,29 +6,16 @@ use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use InvalidArgumentException;
 use League\CommonMark\Block\Element\ThematicBreak;
 
 class HorizontalRuleRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return HorizontalRuleRenderer::class;
     }
 
-    public function testExceptionIsThrownIfWidthNotInteger()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Width should be an integer. Got: "stdClass"');
-
-        $class = $this->getRendererClass();
-        new $class(new \stdClass());
-    }
-
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

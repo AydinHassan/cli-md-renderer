@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class CliRendererFactoryTest extends TestCase
 {
-    public function testFactoryReturnsInstance()
+    public function testFactoryReturnsInstance(): void
     {
         $factory = new CliRendererFactory();
         $this->assertInstanceOf(CliRenderer::class, $factory->__invoke());

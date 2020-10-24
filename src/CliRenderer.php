@@ -9,23 +9,17 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Inline\Element\AbstractInline;
 use RuntimeException;
 
-/**
- * Class CliRenderer
- * @package PhpWorkshop\PhpWorkshop\Md
- * @author  Aydin Hassan <aydin@hotmail.co.uk>
- */
 class CliRenderer
 {
+    /**
+     * @var array<CliBlockRendererInterface>
+     */
+    private $renderers;
 
     /**
-     * @var CliBlockRendererInterface[]
+     * @var array<CliInlineRendererInterface>
      */
-    private $renderers = [];
-
-    /**
-     * @var CliInlineRendererInterface[]
-     */
-    private $inlineRenderers = [];
+    private $inlineRenderers;
 
     /**
      * @var Color
@@ -33,8 +27,8 @@ class CliRenderer
     private $color;
 
     /**
-     * @param CliBlockRendererInterface[] $renderers
-     * @param CliInlineRendererInterface[] $inlineRenderers
+     * @param array<CliBlockRendererInterface> $renderers
+     * @param array<CliInlineRendererInterface> $inlineRenderers
      * @param Color $color
      */
     public function __construct(array $renderers, array $inlineRenderers, Color $color)
@@ -49,9 +43,8 @@ class CliRenderer
      * @param array<string>|string $colourOrStyle
      *
      * @return string
-     *
      */
-    public function style($string, $colourOrStyle)
+    public function style(string $string, $colourOrStyle): string
     {
         if (is_array($colourOrStyle)) {
             $this->color->__invoke($string);
@@ -70,7 +63,7 @@ class CliRenderer
      *
      * @return string
      */
-    public function renderInlines(array $inlines)
+    public function renderInlines(array $inlines): string
     {
         return implode(
             "",
@@ -90,14 +83,7 @@ class CliRenderer
         );
     }
 
-    /**
-     * @param AbstractBlock $block
-     *
-     * @throws RuntimeException
-     *
-     * @return string
-     */
-    public function renderBlock(AbstractBlock $block)
+    public function renderBlock(AbstractBlock $block): string
     {
         $renderer = $this->getBlockRendererForClass(get_class($block));
         if (!$renderer) {
@@ -114,7 +100,7 @@ class CliRenderer
      *
      * @return string
      */
-    public function renderBlocks(array $blocks)
+    public function renderBlocks(array $blocks): string
     {
         return implode(
             "\n",
@@ -128,11 +114,10 @@ class CliRenderer
     }
 
     /**
-     * @param string $inlineBlockClass
-     *
-     * @return null|CliInlineRendererInterface
+     * @param class-string $inlineBlockClass
+     * @return CliInlineRendererInterface|null
      */
-    private function getInlineRendererForClass($inlineBlockClass)
+    private function getInlineRendererForClass(string $inlineBlockClass): ?CliInlineRendererInterface
     {
         if (!isset($this->inlineRenderers[$inlineBlockClass])) {
             return null;
@@ -142,11 +127,11 @@ class CliRenderer
     }
 
     /**
-     * @param string $blockClass
+     * @param class-string $blockClass
      *
-     * @return null|CliBlockRendererInterface
+     * @return CliBlockRendererInterface|null
      */
-    private function getBlockRendererForClass($blockClass)
+    private function getBlockRendererForClass($blockClass): ?CliBlockRendererInterface
     {
         if (!isset($this->renderers[$blockClass])) {
             return null;

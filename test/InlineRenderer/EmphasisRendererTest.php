@@ -12,16 +12,12 @@ use League\CommonMark\Inline\Element\Text;
 
 class EmphasisRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
-
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return EmphasisRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();

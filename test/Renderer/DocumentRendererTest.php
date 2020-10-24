@@ -12,15 +12,12 @@ use League\CommonMark\Block\Element\Paragraph;
 
 class DocumentRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return DocumentRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
         $renderer       = new $class();
