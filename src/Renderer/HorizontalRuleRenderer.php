@@ -13,7 +13,6 @@ use AydinHassan\CliMdRenderer\CliRenderer;
  */
 class HorizontalRuleRenderer implements CliBlockRendererInterface
 {
-
     /**
      * @var int
      */
@@ -22,17 +21,8 @@ class HorizontalRuleRenderer implements CliBlockRendererInterface
     /**
      * @param int $width
      */
-    public function __construct($width = 30)
+    public function __construct(int $width = 30)
     {
-        if (!is_int($width)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Width should be an integer. Got: "%s"',
-                    is_object($width) ? get_class($width) : gettype($width)
-                )
-            );
-        }
-
         $this->width = $width;
     }
 

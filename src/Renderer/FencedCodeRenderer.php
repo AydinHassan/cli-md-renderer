@@ -31,7 +31,7 @@ class FencedCodeRenderer implements CliBlockRendererInterface
      * @param string $language
      * @param SyntaxHighlighterInterface $highlighter
      */
-    public function addSyntaxHighlighter(string $language, SyntaxHighlighterInterface $highlighter)
+    public function addSyntaxHighlighter(string $language, SyntaxHighlighterInterface $highlighter): void
     {
         $this->highlighters[$language] = $highlighter;
     }

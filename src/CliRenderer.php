@@ -46,7 +46,7 @@ class CliRenderer
 
     /**
      * @param string $string
-     * @param array|string $colourOrStyle
+     * @param array<string>|string $colourOrStyle
      *
      * @return string
      *
