@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11b88a957dc0d6fc286daee4b80fdb6c",
+    "content-hash": "d952c2a13be1baa4e86006cd3e5cf43a",
     "packages": [
         {
             "name": "kadet/keylighter",
