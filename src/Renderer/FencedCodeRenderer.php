@@ -7,18 +7,15 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class FencedCodeRenderer implements CliBlockRendererInterface
 {
     /**
-     * @var SyntaxHighlighterInterface[]
+     * @var array<SyntaxHighlighterInterface>
      */
     private $highlighters;
 
     /**
-     * @param SyntaxHighlighterInterface[] $syntaxHighlighters
+     * @param array<SyntaxHighlighterInterface> $syntaxHighlighters
      */
     public function __construct(array $syntaxHighlighters = [])
     {
@@ -27,31 +24,20 @@ class FencedCodeRenderer implements CliBlockRendererInterface
         }
     }
 
-    /**
-     * @param string $language
-     * @param SyntaxHighlighterInterface $highlighter
-     */
-    public function addSyntaxHighlighter($language, SyntaxHighlighterInterface $highlighter)
+    public function addSyntaxHighlighter(string $language, SyntaxHighlighterInterface $highlighter): void
     {
-        if (!is_string($language)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Language must be a string. Got: "%s"',
-                    is_object($language) ? get_class($language) : gettype($language)
-                )
-            );
-        }
-
         $this->highlighters[$language] = $highlighter;
     }
 
     /**
-     * @param AbstractBlock $block
-     * @param CliRenderer   $renderer
-     *
-     * @return string
+     * @return array<SyntaxHighlighterInterface>
      */
-    public function render(AbstractBlock $block, CliRenderer $renderer)
+    public function getSyntaxHighlighters(): array
+    {
+        return $this->highlighters;
+    }
+
+    public function render(AbstractBlock $block, CliRenderer $renderer): string
     {
         if (!($block instanceof FencedCode)) {
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
@@ -72,11 +58,7 @@ class FencedCodeRenderer implements CliBlockRendererInterface
         );
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    private function indent($string)
+    private function indent(string $string): string
     {
         return implode(
             "\n",

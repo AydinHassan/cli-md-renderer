@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
@@ -14,49 +13,31 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class FencedCodeRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return FencedCodeRenderer::class;
     }
 
-    public function testAddSyntaxHighlighterViaConstructor()
+    public function testAddSyntaxHighlighterViaConstructor(): void
     {
-        new FencedCodeRenderer(['php' => $this->createMock(SyntaxHighlighterInterface::class)]);
+        $renderer = new FencedCodeRenderer(
+            ['php' => $highlighter = $this->createMock(SyntaxHighlighterInterface::class)]
+        );
+
+        $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
     }
 
-    public function testConstructorThrowsExceptionIfLanguageNotString()
+    public function testAddSyntaxHighlighter(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language must be a string. Got: "integer"');
+        $renderer = new FencedCodeRenderer();
+        $renderer->addSyntaxHighlighter('php', $highlighter = $this->createMock(SyntaxHighlighterInterface::class));
 
-        new FencedCodeRenderer([0 => $this->createMock(SyntaxHighlighterInterface::class)]);
+        $this->assertSame($renderer->getSyntaxHighlighters(), ['php' => $highlighter]);
     }
 
-    public function testAddSyntaxHighlighter()
-    {
-        $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter('php', $this->createMock(SyntaxHighlighterInterface::class));
-    }
-
-    public function testAddSyntaxHighlighterThrowsExceptionIfLanguageNotString()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language must be a string. Got: "stdClass"');
-
-        $renderer = new FencedCodeRenderer;
-        $renderer->addSyntaxHighlighter(new \stdClass, $this->createMock(SyntaxHighlighterInterface::class));
-    }
-
-    public function testRenderPhpCode()
+    public function testRenderPhpCode(): void
     {
         $renderer = $this->getRenderer();
         $code = $this->getMockBuilder(FencedCode::class)
@@ -65,14 +46,14 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $code
             ->expects($this->once())
             ->method('getStringContent')
-            ->will($this->returnValue('<?php echo \'Hello World\';'));
+            ->willReturn('<?php echo \'Hello World\';');
 
         $code
             ->expects($this->once())
             ->method('getInfoWords')
-            ->will($this->returnValue(['php']));
+            ->willReturn(['php']);
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
@@ -82,7 +63,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         );
     }
 
-    public function testRenderNonePhpCodeIsRendererYellow()
+    public function testRenderNonePhpCodeIsRendererYellow(): void
     {
         $renderer = $this->getRenderer();
 
@@ -92,14 +73,14 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $code
             ->expects($this->once())
             ->method('getStringContent')
-            ->will($this->returnValue('console.log("lol js???")'));
+            ->willReturn('console.log("lol js???")');
 
         $code
             ->expects($this->once())
             ->method('getInfoWords')
-            ->will($this->returnValue(['js']));
+            ->willReturn(['js']);
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [], $color);
 
@@ -109,7 +90,7 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         );
     }
 
-    public function testExceptionIsThrownIfNotCorrectBlock()
+    public function testExceptionIsThrownIfNotCorrectBlock(): void
     {
         $block = $this->createMock(AbstractBlock::class);
 
@@ -123,16 +104,13 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
         $this->getRenderer()->render($block, $cliRenderer);
     }
 
-    /**
-     * @return FencedCodeRenderer
-     */
-    private function getRenderer()
+    private function getRenderer(): FencedCodeRenderer
     {
         $class = $this->getRendererClass();
-        $renderer = new $class;
+        $renderer = new $class();
         $renderer->addSyntaxHighlighter(
             'php',
-            new PhpHighlighter(new KeyLighter)
+            new PhpHighlighter(new KeyLighter())
         );
 
         return $renderer;

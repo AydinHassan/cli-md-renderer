@@ -34,44 +34,36 @@ use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Inline\Element\Strong;
 use League\CommonMark\Inline\Element\Newline;
 
-/**
- * Class CliRendererFactory
- * @package AydinHassan\CliMdRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class CliRendererFactory
 {
-    /**
-     * @return CliRenderer
-     */
-    public function __invoke()
+    public function __invoke(): CliRenderer
     {
 
         $codeRender = new FencedCodeRenderer();
-        $keyLighter = new KeyLighter;
+        $keyLighter = new KeyLighter();
         $keyLighter->init();
         $codeRender->addSyntaxHighlighter('php', new PhpHighlighter($keyLighter));
 
         $blockRenderers = [
-            Document::class         => new DocumentRenderer,
-            Heading::class          => new HeaderRenderer,
-            ThematicBreak::class    => new HorizontalRuleRenderer,
-            Paragraph::class        => new ParagraphRenderer,
+            Document::class         => new DocumentRenderer(),
+            Heading::class          => new HeaderRenderer(),
+            ThematicBreak::class    => new HorizontalRuleRenderer(),
+            Paragraph::class        => new ParagraphRenderer(),
             FencedCode::class       => $codeRender,
-            ListBlock::class        => new ListBlockRenderer,
-            ListItem::class         => new ListItemRenderer,
+            ListBlock::class        => new ListBlockRenderer(),
+            ListItem::class         => new ListItemRenderer(),
         ];
 
         $inlineBlockRenderers = [
-            Text::class             => new TextRenderer,
-            Code::class             => new CodeRenderer,
-            Emphasis::class         => new EmphasisRenderer,
-            Strong::class           => new StrongRenderer,
-            Newline::class          => new NewlineRenderer,
-            Link::class             => new LinkRenderer,
+            Text::class             => new TextRenderer(),
+            Code::class             => new CodeRenderer(),
+            Emphasis::class         => new EmphasisRenderer(),
+            Strong::class           => new StrongRenderer(),
+            Newline::class          => new NewlineRenderer(),
+            Link::class             => new LinkRenderer(),
         ];
 
-        $colors = new Color;
+        $colors = new Color();
         $colors->setForceStyle(true);
 
         return new CliRenderer($blockRenderers, $inlineBlockRenderers, $colors);

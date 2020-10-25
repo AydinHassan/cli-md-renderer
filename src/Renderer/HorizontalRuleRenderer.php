@@ -6,43 +6,19 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\ThematicBreak;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
-/**
- * Class HorizontalRuleRenderer
- * @package AydinHassan\CliMdRenderer\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HorizontalRuleRenderer implements CliBlockRendererInterface
 {
-
     /**
      * @var int
      */
     private $width;
 
-    /**
-     * @param int $width
-     */
-    public function __construct($width = 30)
+    public function __construct(int $width = 30)
     {
-        if (!is_int($width)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Width should be an integer. Got: "%s"',
-                    is_object($width) ? get_class($width) : gettype($width)
-                )
-            );
-        }
-
         $this->width = $width;
     }
 
-    /**
-     * @param AbstractBlock $block
-     * @param CliRenderer   $renderer
-     *
-     * @return string
-     */
-    public function render(AbstractBlock $block, CliRenderer $renderer)
+    public function render(AbstractBlock $block, CliRenderer $renderer): string
     {
         if (!($block instanceof ThematicBreak)) {
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));

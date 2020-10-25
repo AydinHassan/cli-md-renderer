@@ -4,18 +4,13 @@ namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use AydinHassan\CliMdRenderer\CliRenderer;
 use InvalidArgumentException;
 
-/**
- * Class AbstractInlineRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-abstract class AbstractInlineRendererTest extends PHPUnit_Framework_TestCase
+abstract class AbstractInlineRendererTest extends TestCase
 {
-    public function testExceptionIsThrownIfNotCorrectBlock()
+    public function testExceptionIsThrownIfNotCorrectBlock(): void
     {
         if (!$this instanceof RendererTestInterface) {
             $this->markTestSkipped('Not a Renderer');
@@ -31,6 +26,6 @@ abstract class AbstractInlineRendererTest extends PHPUnit_Framework_TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('Incompatible inline type: "%s"', get_class($block)));
 
-        (new $class)->render($block, $cliRenderer);
+        (new $class())->render($block, $cliRenderer);
     }
 }

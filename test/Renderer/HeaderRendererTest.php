@@ -10,34 +10,25 @@ use Colors\Color;
 use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class HeaderRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HeaderRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return HeaderRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
+        $renderer       = new $class();
         $header         = new Heading(2, 'HEADING!!');
         $header->appendChild(new Text('HEADING!!'));
 
 
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(

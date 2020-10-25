@@ -4,18 +4,13 @@ namespace AydinHassan\CliMdRendererTest\Renderer;
 
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use League\CommonMark\Block\Element\AbstractBlock;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use AydinHassan\CliMdRenderer\CliRenderer;
 use InvalidArgumentException;
 
-/**
- * Class AbstractRendererTest
- * @package AydinHassan\CliMdRendererTest\InlineRenderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-abstract class AbstractRendererTest extends PHPUnit_Framework_TestCase
+abstract class AbstractRendererTest extends TestCase
 {
-    public function testExceptionIsThrownIfNotCorrectBlock()
+    public function testExceptionIsThrownIfNotCorrectBlock(): void
     {
         if (!$this instanceof RendererTestInterface) {
             $this->markTestSkipped('Not a Renderer');
@@ -30,6 +25,6 @@ abstract class AbstractRendererTest extends PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('Incompatible block type: "%s"', get_class($block)));
-        (new $class)->render($block, $cliRenderer);
+        (new $class())->render($block, $cliRenderer);
     }
 }

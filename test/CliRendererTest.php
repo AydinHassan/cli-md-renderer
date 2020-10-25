@@ -8,17 +8,12 @@ use AydinHassan\CliMdRenderer\Renderer\CliBlockRendererInterface;
 use Colors\Color;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Inline\Element\AbstractInline;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- * Class CliRendererTest
- * @package AydinHassan\CliMdRendererTest
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
-class CliRendererTest extends PHPUnit_Framework_TestCase
+class CliRendererTest extends TestCase
 {
-    public function testRenderBlockThrowsExceptionIfNoRenderer()
+    public function testRenderBlockThrowsExceptionIfNoRenderer(): void
     {
         $block = $this->createMock(AbstractBlock::class);
 
@@ -27,18 +22,18 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
             sprintf('Unable to find corresponding renderer for block type: "%s"', get_class($block))
         );
 
-        $renderer = new CliRenderer([], [], new Color);
+        $renderer = new CliRenderer([], [], new Color());
         $renderer->renderBlock($block);
     }
 
-    public function testRenderBlock()
+    public function testRenderBlock(): void
     {
         $block = $this->createMock(AbstractBlock::class);
         $class = get_class($block);
         $blockRenderer = $this->createMock(CliBlockRendererInterface::class);
         $renderer = new CliRenderer([
             $class => $blockRenderer
-        ], [], new Color);
+        ], [], new Color());
 
         $blockRenderer
             ->expects($this->once())
@@ -48,7 +43,7 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
         $renderer->renderBlock($block);
     }
 
-    public function testRenderBlocks()
+    public function testRenderBlocks(): void
     {
         $block1         = $this->createMock(AbstractBlock::class);
         $block2         = $this->createMock(AbstractBlock::class);
@@ -57,24 +52,21 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
         $renderer = new CliRenderer([
             get_class($block1) => $blockRenderer,
             get_class($block2) => $blockRenderer,
-        ], [], new Color);
+        ], [], new Color());
 
         $blockRenderer
-            ->expects($this->at(0))
+            ->expects($this->exactly(2))
             ->method('render')
-            ->with($block1, $renderer)
-            ->will($this->returnValue('block1'));
-
-        $blockRenderer
-            ->expects($this->at(1))
-            ->method('render')
-            ->with($block2, $renderer)
-            ->will($this->returnValue('block2'));
+            ->withConsecutive([$block1, $renderer], [$block2, $renderer])
+            ->willReturnOnConsecutiveCalls(
+                'block1',
+                'block2'
+            );
 
         $renderer->renderBlocks([$block1, $block2]);
     }
 
-    public function testRenderInlineBlocksThrowsExceptionIfNoRenderer()
+    public function testRenderInlineBlocksThrowsExceptionIfNoRenderer(): void
     {
         $block = $this->createMock(AbstractInline::class);
 
@@ -83,11 +75,11 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
             sprintf('Unable to find corresponding renderer for inline type: "%s"', get_class($block))
         );
 
-        $renderer = new CliRenderer([], [], new Color);
+        $renderer = new CliRenderer([], [], new Color());
         $renderer->renderInlines([$block]);
     }
 
-    public function testRenderInlineBlocks()
+    public function testRenderInlineBlocks(): void
     {
         $block1 = $this->createMock(AbstractInline::class);
         $block2 = $this->createMock(AbstractInline::class);
@@ -96,19 +88,16 @@ class CliRendererTest extends PHPUnit_Framework_TestCase
         $renderer = new CliRenderer([], [
             get_class($block1) => $inlineRenderer,
             get_class($block2) => $inlineRenderer,
-        ], new Color);
+        ], new Color());
 
         $inlineRenderer
-            ->expects($this->at(0))
+            ->expects($this->exactly(2))
             ->method('render')
-            ->with($block1, $renderer)
-            ->will($this->returnValue('inline1'));
-
-        $inlineRenderer
-            ->expects($this->at(1))
-            ->method('render')
-            ->with($block2, $renderer)
-            ->will($this->returnValue('inline2'));
+            ->withConsecutive([$block1, $renderer], [$block2, $renderer])
+            ->willReturnOnConsecutiveCalls(
+                'inline1',
+                'inline2'
+            );
 
         $this->assertEquals('inline1inline2', $renderer->renderInlines([$block1, $block2]));
     }

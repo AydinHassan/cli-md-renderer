@@ -10,35 +10,25 @@ use Colors\Color;
 use League\CommonMark\Block\Element\Paragraph;
 use League\CommonMark\Inline\Element\Text;
 
-/**
- * Class ParagraphRendererTest
- * @package AydinHassan\CliMdRendererTest\Renderer
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class ParagraphRendererTest extends AbstractRendererTest implements RendererTestInterface
 {
-
-    /**
-     * @return string
-     */
-    public function getRendererClass()
+    public function getRendererClass(): string
     {
         return ParagraphRenderer::class;
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $class          = $this->getRendererClass();
-        $renderer       = new $class;
-        $paragraph      = new Paragraph;
+        $renderer       = new $class();
+        $paragraph      = new Paragraph();
         $paragraph->appendChild(new Text('Some Text 1'));
         $paragraph->appendChild(new Text('Some Text 2'));
 
-
-        $color          = new Color;
+        $color          = new Color();
         $color->setForceStyle(true);
         $cliRenderer    = new CliRenderer([], [
-            Text::class => new TextRenderer
+            Text::class => new TextRenderer()
         ], $color);
 
         $this->assertEquals(
