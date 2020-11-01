@@ -11,7 +11,7 @@
     "require" : {
         "php" : ">=7.1",
         "league/commonmark": "^1.5.6",
-        "kadet/keylighter": "dev-master",
+        "php-school/keylighter": "^0.8.4",
         "kevinlebrun/colors.php": "^1.0"
     },
     "require-dev": {
