@@ -9,11 +9,11 @@ use AydinHassan\CliMdRenderer\Renderer\ListItemRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\ListBlock;
-use League\CommonMark\Block\Element\ListData;
-use League\CommonMark\Block\Element\ListItem;
-use League\CommonMark\Block\Element\Paragraph;
-use League\CommonMark\Inline\Element\Text;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListData;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Node\Inline\Text;
 
 class ListBlockRendererTest extends AbstractRendererTest implements RendererTestInterface
 {

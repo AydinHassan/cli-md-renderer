@@ -5,8 +5,8 @@ namespace AydinHassan\CliMdRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\CliInlineRendererInterface;
 use AydinHassan\CliMdRenderer\Renderer\CliBlockRendererInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Inline\AbstractInline;
 use RuntimeException;
 
 class CliRenderer

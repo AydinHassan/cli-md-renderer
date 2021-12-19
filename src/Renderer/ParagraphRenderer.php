@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Paragraph;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\Paragraph;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class ParagraphRenderer implements CliBlockRendererInterface

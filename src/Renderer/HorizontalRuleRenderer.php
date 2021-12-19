@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\ThematicBreak;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ThematicBreak;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class HorizontalRuleRenderer implements CliBlockRendererInterface

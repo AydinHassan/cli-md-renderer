@@ -6,7 +6,7 @@ use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HorizontalRuleRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\ThematicBreak;
+use League\CommonMark\Extension\CommonMark\Node\Block\ThematicBreak;
 
 class HorizontalRuleRendererTest extends AbstractRendererTest implements RendererTestInterface
 {

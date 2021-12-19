@@ -7,8 +7,8 @@ use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
 use AydinHassan\CliMdRenderer\Renderer\HeaderRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\Heading;
-use League\CommonMark\Inline\Element\Text;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Node\Inline\Text;
 
 class HeaderRendererTest extends AbstractRendererTest implements RendererTestInterface
 {

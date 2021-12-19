@@ -6,7 +6,7 @@ use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\NewlineRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Inline\Element\Newline;
+use League\CommonMark\Node\Inline\Newline;
 
 class NewlineRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {

@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Document;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\Document;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class DocumentRenderer implements CliBlockRendererInterface

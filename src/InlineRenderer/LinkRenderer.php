@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class LinkRenderer implements CliInlineRendererInterface

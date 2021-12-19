@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Heading;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class HeaderRenderer implements CliBlockRendererInterface

@@ -3,7 +3,7 @@
 namespace AydinHassan\CliMdRendererTest\InlineRenderer;
 
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
-use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Node\Inline\AbstractInline;
 use PHPUnit\Framework\TestCase;
 use AydinHassan\CliMdRenderer\CliRenderer;
 use InvalidArgumentException;

@@ -2,10 +2,9 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\HorizontalRule;
+use League\CommonMark\Node\Block\AbstractBlock;
 use AydinHassan\CliMdRenderer\CliRenderer;
-use League\CommonMark\Block\Element\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
 
 class ListBlockRenderer implements CliBlockRendererInterface
 {

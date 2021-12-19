@@ -2,9 +2,9 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Node\Block\AbstractBlock;
 use AydinHassan\CliMdRenderer\CliRenderer;
-use League\CommonMark\Block\Element\ListItem;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 
 class ListItemRenderer implements CliBlockRendererInterface
 {
