@@ -12,10 +12,11 @@ CLI Markdown Renderer
 <?php
 require_once 'vendor/autoload.php';
 
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
 use AydinHassan\CliMdRenderer\CliRendererFactory;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Parser\MarkdownParser;
 
+$parser       = new MarkdownParser((new Environment())->addExtension(new CommonMarkCoreExtension()));
 $parser       = new DocParser(Environment::createCommonMarkEnvironment());
 $cliRenderer  = (new CliRendererFactory)->__invoke();
 $ast          = $parser->parse(file_get_contents('path/to/file.md'));
