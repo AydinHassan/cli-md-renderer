@@ -14,6 +14,8 @@ class ListBlockRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        return $renderer->renderBlocks($block->children());
+        /** @var array<AbstractBlock> $nodes */
+        $nodes = $block->children();
+        return $renderer->renderBlocks($nodes);
     }
 }

@@ -14,7 +14,9 @@ class DocumentRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        $wholeDoc = $renderer->renderBlocks($block->children());
+        /** @var array<AbstractBlock> $nodes */
+        $nodes = $block->children();
+        $wholeDoc = $renderer->renderBlocks($nodes);
         return $wholeDoc === '' ? '' : $wholeDoc . "\n";
     }
 }

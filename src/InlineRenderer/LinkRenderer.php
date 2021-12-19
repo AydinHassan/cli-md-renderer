@@ -14,6 +14,8 @@ class LinkRenderer implements CliInlineRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible inline type: "%s"', get_class($inline)));
         }
 
-        return $renderer->style($renderer->renderInlines($inline->children()), ['underline', 'bold', 'light_blue']);
+        /** @var array<AbstractInline> $nodes */
+        $nodes = $inline->children();
+        return $renderer->style($renderer->renderInlines($nodes), ['underline', 'bold', 'light_blue']);
     }
 }

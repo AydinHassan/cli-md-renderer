@@ -14,6 +14,9 @@ class ListItemRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        return $renderer->style(' * ', 'yellow') . $renderer->renderBlocks($block->children());
+        /** @var array<AbstractBlock> $nodes */
+        $nodes = $block->children();
+
+        return $renderer->style(' * ', 'yellow') . $renderer->renderBlocks($nodes);
     }
 }
