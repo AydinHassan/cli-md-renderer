@@ -10,7 +10,6 @@ use League\CommonMark\Inline\Element\Code;
 
 class CodeRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {
-
     public function getRendererClass(): string
     {
         return CodeRenderer::class;
