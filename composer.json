@@ -9,7 +9,7 @@
         }
     ],
     "require" : {
-        "php" : ">=7.1",
+        "php" : ">=7.4",
         "league/commonmark": "^1.5.6",
         "php-school/keylighter": "^0.8.4",
         "kevinlebrun/colors.php": "^1.0"
