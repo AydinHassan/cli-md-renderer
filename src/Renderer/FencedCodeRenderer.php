@@ -3,8 +3,8 @@
 namespace AydinHassan\CliMdRenderer\Renderer;
 
 use AydinHassan\CliMdRenderer\SyntaxHighlighterInterface;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\FencedCode;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class FencedCodeRenderer implements CliBlockRendererInterface
@@ -50,11 +50,11 @@ class FencedCodeRenderer implements CliBlockRendererInterface
         }
 
         if (null === $codeType || !isset($this->highlighters[$codeType])) {
-            return $this->indent($renderer->style($block->getStringContent(), 'yellow'));
+            return $this->indent($renderer->style($block->getLiteral(), 'yellow'));
         }
 
         return $this->indent(
-            sprintf("%s\n", $this->highlighters[$codeType]->highlight($block->getStringContent()))
+            sprintf("%s\n", $this->highlighters[$codeType]->highlight($block->getLiteral()))
         );
     }
 
@@ -62,12 +62,7 @@ class FencedCodeRenderer implements CliBlockRendererInterface
     {
         return implode(
             "\n",
-            array_map(
-                function ($row) {
-                    return sprintf("    %s", $row);
-                },
-                explode("\n", $string)
-            )
+            array_map(fn (string $row): string => sprintf("    %s", $row), explode("\n", $string))
         );
     }
 }

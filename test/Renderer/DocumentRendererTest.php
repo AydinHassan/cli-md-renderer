@@ -7,8 +7,8 @@ use AydinHassan\CliMdRenderer\Renderer\DocumentRenderer;
 use AydinHassan\CliMdRenderer\Renderer\ParagraphRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Block\Element\Document;
-use League\CommonMark\Block\Element\Paragraph;
+use League\CommonMark\Node\Block\Document;
+use League\CommonMark\Node\Block\Paragraph;
 
 class DocumentRendererTest extends AbstractRendererTest implements RendererTestInterface
 {

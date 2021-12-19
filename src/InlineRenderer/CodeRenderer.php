@@ -3,8 +3,8 @@
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
 use AydinHassan\CliMdRenderer\CliRenderer;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Code;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 class CodeRenderer implements CliInlineRendererInterface
 {
@@ -14,6 +14,6 @@ class CodeRenderer implements CliInlineRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible inline type: "%s"', get_class($inline)));
         }
 
-        return $renderer->style($inline->getContent(), 'yellow');
+        return $renderer->style($inline->getLiteral(), 'yellow');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
-use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Node\Inline\AbstractInline;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 interface CliInlineRendererInterface

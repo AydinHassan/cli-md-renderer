@@ -6,7 +6,7 @@ use AydinHassan\CliMdRenderer\CliRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\CodeRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Inline\Element\Code;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 class CodeRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {

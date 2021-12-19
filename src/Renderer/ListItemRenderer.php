@@ -2,9 +2,9 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Node\Block\AbstractBlock;
 use AydinHassan\CliMdRenderer\CliRenderer;
-use League\CommonMark\Block\Element\ListItem;
+use League\CommonMark\Extension\CommonMark\Node\Block\ListItem;
 
 class ListItemRenderer implements CliBlockRendererInterface
 {
@@ -14,6 +14,9 @@ class ListItemRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        return $renderer->style(' * ', 'yellow') . $renderer->renderBlocks($block->children());
+        /** @var array<AbstractBlock> $nodes */
+        $nodes = $block->children();
+
+        return $renderer->style(' * ', 'yellow') . $renderer->renderBlocks($nodes);
     }
 }

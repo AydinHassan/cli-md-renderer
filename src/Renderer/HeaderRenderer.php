@@ -2,9 +2,10 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Heading;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use AydinHassan\CliMdRenderer\CliRenderer;
+use League\CommonMark\Node\Inline\AbstractInline;
 
 class HeaderRenderer implements CliBlockRendererInterface
 {
@@ -14,8 +15,11 @@ class HeaderRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
+        /** @var array<AbstractInline> $nodes */
+        $nodes = $block->children();
+
         $level  = $block->getLevel();
-        $text   = $renderer->renderInlines($block->children());
+        $text   = $renderer->renderInlines($nodes);
 
         return sprintf(
             "\n%s %s\n",

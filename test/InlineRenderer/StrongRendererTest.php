@@ -7,8 +7,8 @@ use AydinHassan\CliMdRenderer\InlineRenderer\StrongRenderer;
 use AydinHassan\CliMdRenderer\InlineRenderer\TextRenderer;
 use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
-use League\CommonMark\Inline\Element\Strong;
-use League\CommonMark\Inline\Element\Text;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
+use League\CommonMark\Node\Inline\Text;
 
 class StrongRendererTest extends AbstractInlineRendererTest implements RendererTestInterface
 {

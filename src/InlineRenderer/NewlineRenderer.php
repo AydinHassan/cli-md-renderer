@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Newline;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Node\Inline\Newline;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class NewlineRenderer implements CliInlineRendererInterface

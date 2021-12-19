@@ -2,9 +2,10 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Paragraph;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\Paragraph;
 use AydinHassan\CliMdRenderer\CliRenderer;
+use League\CommonMark\Node\Inline\AbstractInline;
 
 class ParagraphRenderer implements CliBlockRendererInterface
 {
@@ -14,6 +15,8 @@ class ParagraphRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        return $renderer->renderInlines($block->children()) . "\n";
+        /** @var array<AbstractInline> $nodes */
+        $nodes = $block->children();
+        return $renderer->renderInlines($nodes) . "\n";
     }
 }

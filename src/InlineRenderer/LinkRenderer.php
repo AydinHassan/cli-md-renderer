@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class LinkRenderer implements CliInlineRendererInterface
@@ -14,6 +14,8 @@ class LinkRenderer implements CliInlineRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible inline type: "%s"', get_class($inline)));
         }
 
-        return $renderer->style($renderer->renderInlines($inline->children()), ['underline', 'bold', 'light_blue']);
+        /** @var array<AbstractInline> $nodes */
+        $nodes = $inline->children();
+        return $renderer->style($renderer->renderInlines($nodes), ['underline', 'bold', 'light_blue']);
     }
 }

@@ -9,8 +9,8 @@ use AydinHassan\CliMdRendererTest\RendererTestInterface;
 use Colors\Color;
 use InvalidArgumentException;
 use Kadet\Highlighter\KeyLighter;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\FencedCode;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use AydinHassan\CliMdRenderer\Renderer\FencedCodeRenderer;
 
 class FencedCodeRendererTest extends AbstractRendererTest implements RendererTestInterface
@@ -40,18 +40,10 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
     public function testRenderPhpCode(): void
     {
         $renderer = $this->getRenderer();
-        $code = $this->getMockBuilder(FencedCode::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $code
-            ->expects($this->once())
-            ->method('getStringContent')
-            ->willReturn('<?php echo \'Hello World\';');
 
-        $code
-            ->expects($this->once())
-            ->method('getInfoWords')
-            ->willReturn(['php']);
+        $code = new FencedCode(10, 'y', 0);
+        $code->setLiteral('<?php echo \'Hello World\';');
+        $code->setInfo('php');
 
         $color          = new Color();
         $color->setForceStyle(true);
@@ -67,18 +59,9 @@ class FencedCodeRendererTest extends AbstractRendererTest implements RendererTes
     {
         $renderer = $this->getRenderer();
 
-        $code = $this->getMockBuilder(FencedCode::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $code
-            ->expects($this->once())
-            ->method('getStringContent')
-            ->willReturn('console.log("lol js???")');
-
-        $code
-            ->expects($this->once())
-            ->method('getInfoWords')
-            ->willReturn(['js']);
+        $code = new FencedCode(10, 'y', 0);
+        $code->setLiteral('console.log("lol js???")');
+        $code->setInfo('js');
 
         $color          = new Color();
         $color->setForceStyle(true);

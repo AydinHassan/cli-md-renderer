@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\InlineRenderer;
 
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Text;
+use League\CommonMark\Node\Inline\AbstractInline;
+use League\CommonMark\Node\Inline\Text;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class TextRenderer implements CliInlineRendererInterface
@@ -14,6 +14,6 @@ class TextRenderer implements CliInlineRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible inline type: "%s"', get_class($inline)));
         }
 
-        return $inline->getContent();
+        return $inline->getLiteral();
     }
 }

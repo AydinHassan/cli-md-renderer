@@ -2,7 +2,7 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Node\Block\AbstractBlock;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 interface CliBlockRendererInterface

@@ -2,8 +2,8 @@
 
 namespace AydinHassan\CliMdRenderer\Renderer;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\Document;
+use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\Document;
 use AydinHassan\CliMdRenderer\CliRenderer;
 
 class DocumentRenderer implements CliBlockRendererInterface
@@ -14,7 +14,9 @@ class DocumentRenderer implements CliBlockRendererInterface
             throw new \InvalidArgumentException(sprintf('Incompatible block type: "%s"', get_class($block)));
         }
 
-        $wholeDoc = $renderer->renderBlocks($block->children());
+        /** @var array<AbstractBlock> $nodes */
+        $nodes = $block->children();
+        $wholeDoc = $renderer->renderBlocks($nodes);
         return $wholeDoc === '' ? '' : $wholeDoc . "\n";
     }
 }
